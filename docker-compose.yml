@@ -1,0 +1,22 @@
+version: "3"
+services:
+  mongodb:
+    build:
+      context: ./mongodb
+      dockerfile: Dockerfile
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  user-service:
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:
