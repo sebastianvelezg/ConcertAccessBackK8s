@@ -18,5 +18,22 @@ services:
     depends_on:
       - mongodb
 
+  area-service:
+    build:
+      context: ./area-service
+      dockerfile: Dockerfile
+    ports:
+      - "3010:3010"
+    depends_on:
+      - mongodb
+  ticket-service:
+    build:
+      context: ./ticket-service
+      dockerfile: Dockerfile
+    ports:
+      - "3020:3020"
+    depends_on:
+      - mongodb
+
 volumes:
   mongodb_data:
